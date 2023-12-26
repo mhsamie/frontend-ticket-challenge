@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import App from "./App";
 
 describe("App", () => {
-  test("App fully rendered", async () => {
+  test("App fully rendered", () => {
     render(<App />);
     expect(screen.getByTestId("seat-selector-container")).toBeInTheDocument();
   });
