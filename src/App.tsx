@@ -1,27 +1,16 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./App.css";
-import axios from "axios";
+import { Route, Routes } from "react-router-dom";
+import SeatSelectorPage from "./pages/SeatSelector/SeatSelectorPage";
+import ResultPage from "./pages/Confirm/ResultPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
-      <div data-testid="seat-selector-container"></div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      <Route index path="/" element={<SeatSelectorPage />} />
+      <Route path="/confirm" element={<ResultPage />} />
+    </Routes>
   );
 }
 
