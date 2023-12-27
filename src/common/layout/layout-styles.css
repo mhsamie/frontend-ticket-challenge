@@ -1,0 +1,10 @@
+header {
+  width: 100%;
+  padding: 8px 0 32px 0;
+  display: flex;
+  justify-content: center;
+}
+header > .header-content {
+  text-transform: uppercase;
+  font-weight: 800;
+}
