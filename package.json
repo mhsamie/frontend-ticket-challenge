@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "server": "json-server --watch db.json --port 3001",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "jest",
@@ -13,6 +14,9 @@
   },
   "dependencies": {
     "@testing-library/react": "^14.1.2",
+    "axios": "^1.6.3",
+    "json-server": "^0.17.4",
+    "light-uid": "^1.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -47,5 +51,8 @@
       "^.+\\.svg$": "jest-svg-transformer",
       "^.+\\.(css|less|scss)$": "identity-obj-proxy"
     }
+  },
+  "msw": {
+    "workerDirectory": "src"
   }
 }

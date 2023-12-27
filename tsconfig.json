@@ -11,7 +11,6 @@
     ],
 
     /* Bundler mode */
-  
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
@@ -24,6 +23,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "public/mockServiceWorker.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
