@@ -17,7 +17,7 @@ const SeatsWrapper: FC<{
   return seatsData?.map((d, i) => (
     <SeatRow
       rowNumber={i}
-      key={i}
+      key={`r${i}`}
       rowData={d}
       modalOpenHandler={modalOpenHandler}
     />

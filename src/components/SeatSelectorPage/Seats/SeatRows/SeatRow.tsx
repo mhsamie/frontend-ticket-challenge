@@ -24,7 +24,7 @@ const SeatRow: FC<{
     <div className="seat-row-container" role="row">
       {Array.from(hashedData).map(([key, value], index) => (
         <Seat
-          key={index}
+          key={`s${index}`}
           value={value}
           modalOpenHandler={modalOpenHandler}
           location={{ x: rowNumber, y: index }}
