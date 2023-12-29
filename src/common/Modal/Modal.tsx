@@ -2,15 +2,17 @@
 import React, { FC } from "react";
 
 import "./Modal.css";
+import Button from "../Button/Button";
 
 interface Iprops {
   isOpen: boolean;
+  onConfirm: any;
   onClose: () => void;
   title: string;
   children: React.ReactNode;
 }
 
-const Modal: FC<Iprops> = ({ isOpen, onClose, title, children }) => {
+const Modal: FC<Iprops> = ({ isOpen, onClose, title, children, onConfirm }) => {
   const handleClose = () => {
     onClose();
   };
@@ -38,7 +40,13 @@ const Modal: FC<Iprops> = ({ isOpen, onClose, title, children }) => {
             />
           </svg>
         </div>
-        <div className="modal-body">{children}</div>
+        <div className="modal-body">
+          <div>{children}</div>
+          <div className="action-btn-section">
+            <Button type="primary" text="Yes, I do." onClick={onConfirm} />
+            <Button type="secondary" text="Cancel" onClick={onClose} />
+          </div>
+        </div>
       </div>
     </div>
   );

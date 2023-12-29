@@ -1,7 +1,8 @@
 import { FC, useState } from "react";
 import "../Seats-style.css";
 import axios from "axios";
-
+import Modal from "../../../../common/Modal/Modal";
+import TicketInfo from "../../Ticket/TicketInfo";
 import { useNavigate } from "react-router-dom";
 
 const Seat: FC<{
@@ -14,6 +15,7 @@ const Seat: FC<{
     isOpen: false,
   });
   const seatColor = value === 1 ? "red" : "white";
+
   const seatSelectorHandler = async () => {
     try {
       const data = await axios.post(`/maps/${mapId}/ticket`, location);
@@ -38,6 +40,13 @@ const Seat: FC<{
   };
   return (
     <>
+      <Modal
+        children={<TicketInfo location={location} />}
+        onConfirm={seatSelectorHandler}
+        isOpen={confirmationModal.isOpen}
+        onClose={modalOnClose}
+        title="Confirm Your Seat"
+      />
       <div
         role="button"
         onClick={modalOpenHandler}

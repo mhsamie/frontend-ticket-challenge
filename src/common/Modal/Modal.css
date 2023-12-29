@@ -17,6 +17,14 @@
 .animate {
   animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
 }
+.action-btn-section {
+  margin: 16px 0 0 0;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 8px;
+  align-items: center;
+  justify-content: end;
+}
 /* Modal.css */
 .modal {
   position: fixed;
