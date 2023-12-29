@@ -1,0 +1,25 @@
+.seat {
+  border-radius: 8px;
+  width: 60px;
+  height: 60px;
+}
+.seat-row-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.seat.white:hover {
+  background-color: lightcoral;
+}
+
+.seat.red {
+  background-color: red;
+}
+
+.seat.white {
+  background-color: white;
+  cursor: pointer;
+}

@@ -12,3 +12,7 @@
 .map-container:hover {
   background-color: #e29c4d;
 }
+
+.map-container .active {
+  border: solid 2px #e29c4d;
+}

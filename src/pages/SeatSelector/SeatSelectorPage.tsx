@@ -1,15 +1,18 @@
-import MapSection from "../../common/Section/MapSection";
+import MapSection from "../../components/SeatSelectorPage/Section/MapSection";
 import "./seat-selector.styles.css";
 import image from "../../assets/vol-ground.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Msg from "../../common/Empty-states/Msg";
+import SeatsWrapper from "../../components/SeatSelectorPage/Seats/SeatsWrapper/SeatsWrapper";
 
 const SeatSelectorPage = () => {
   const [MapsData, setMapData] = useState<string[]>([]);
-  const [selectedMap, setSelectedMap] = useState<string>("");
+  const [selectedId, setSelectedId] = useState<string>("");
+  const [seatsData, setSeatsData] = useState<[][]>([]);
   const getMapsHandler = async () => {
     try {
-      const data = await axios.get("/api/maps");
+      const data = await axios.get("/maps");
       console.log(data.data.data);
       setMapData(data.data);
     } catch (error) {
@@ -17,24 +20,47 @@ const SeatSelectorPage = () => {
     }
   };
 
-  const mapSelectorHandler = (id: string) => {
-    setSelectedMap(id);
+  const mapSelectorHandler = async (id: string) => {
+    setSelectedId(id);
+    try {
+      const data = await axios.get(`/maps/${id}`);
+      setSeatsData(data.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   useEffect(() => {
     getMapsHandler();
   }, []);
 
   return (
-    <div data-testid="seat-selector-container" className="stadium-container">
+    <main data-testid="seat-selector-container" className="stadium-container">
       <div className="seats-section-container">
-        {MapsData?.map((d) => (
-          <MapSection name={d} mapSelectorHandler={mapSelectorHandler} />
-        ))}
+        {MapsData ? (
+          MapsData?.map((d) => (
+            <MapSection
+              active={selectedId}
+              key={d}
+              name={d}
+              mapSelectorHandler={mapSelectorHandler}
+            />
+          ))
+        ) : (
+          <Msg
+            type="error"
+            msg="Currently there is no Data to show. please Try again later."
+          />
+        )}
       </div>
-      <div className="seat-selector"></div>
+      <div className="seat-selector">
+        <SeatsWrapper seatsData={seatsData} mapId={selectedId} />
+      </div>
 
-      {/* <img src={image} alt="bg" className="vol-ground-image" /> */}
-    </div>
+      <section className="selected-ticket-viewer">
+        <div></div>
+      </section>
+    </main>
   );
 };
 
