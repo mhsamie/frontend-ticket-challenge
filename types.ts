@@ -9,7 +9,7 @@ export interface Seat {
     y: number;
 }
 
-export interface Ticket {
+export interface TicketLocation {
     x: number;
     y: number;
 }

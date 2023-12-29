@@ -5,11 +5,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Msg from "../../common/Empty-states/Msg";
 import SeatsWrapper from "../../components/SeatSelectorPage/Seats/SeatsWrapper/SeatsWrapper";
+import Modal from "../../common/Modal/Modal";
+import TicketInfo from "../../components/SeatSelectorPage/Ticket/TicketInfo";
+import { useNavigate } from "react-router-dom";
+import { TicketLocation } from "../../../types";
 
 const SeatSelectorPage = () => {
   const [MapsData, setMapData] = useState<string[]>([]);
   const [selectedId, setSelectedId] = useState<string>("");
   const [seatsData, setSeatsData] = useState<[][]>([]);
+  const [selectedSeat, setSelectedSeat] = useState<TicketLocation>({
+    x: 0,
+    y: 0,
+  });
   const getMapsHandler = async () => {
     try {
       const data = await axios.get("/maps");
@@ -28,6 +36,35 @@ const SeatSelectorPage = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const navigate = useNavigate();
+  const [confirmationModal, setConfirmationModal] = useState({
+    isOpen: false,
+  });
+
+  const seatSelectorHandler = async () => {
+    console.log(selectedSeat);
+    try {
+      const data = await axios.post(`/maps/${selectedId}/ticket`, selectedSeat);
+      console.log(data.data.status);
+      if (data.data.status === "success") {
+        navigate("/confirm");
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      modalOnClose();
+    }
+  };
+  const modalOpenHandler = (location: TicketLocation) => {
+    setSelectedSeat(location);
+    // if (value !== 1) {
+    setConfirmationModal({ ...confirmationModal, isOpen: true });
+    // }
+  };
+
+  const modalOnClose = () => {
+    setConfirmationModal({ ...confirmationModal, isOpen: false });
   };
 
   useEffect(() => {
@@ -54,8 +91,18 @@ const SeatSelectorPage = () => {
         )}
       </div>
       <div className="seat-selector">
-        <SeatsWrapper seatsData={seatsData} mapId={selectedId} />
+        <SeatsWrapper
+          seatsData={seatsData}
+          modalOpenHandler={modalOpenHandler}
+        />
       </div>
+      <Modal
+        children={<TicketInfo location={selectedSeat} />}
+        onConfirm={seatSelectorHandler}
+        isOpen={confirmationModal.isOpen}
+        onClose={modalOnClose}
+        title="Confirm Your Seat"
+      />
     </main>
   );
 };

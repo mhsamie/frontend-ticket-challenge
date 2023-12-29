@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import Seat from "../Seat/Seat";
 import "../Seats-style.css";
-import axios from "axios";
+import { TicketLocation } from "../../../../../types";
 
-const SeatRow: FC<{ rowData: number[]; rowNumber: number; mapId: string }> = ({
-  rowData,
-  rowNumber,
-  mapId,
-}) => {
+const SeatRow: FC<{
+  rowNumber: number;
+  rowData: number[];
+  modalOpenHandler: (location: TicketLocation) => void;
+}> = ({ rowData, modalOpenHandler, rowNumber }) => {
   const [hashedData, setHashedData] = useState(new Map());
 
   useEffect(() => {
@@ -24,9 +24,9 @@ const SeatRow: FC<{ rowData: number[]; rowNumber: number; mapId: string }> = ({
     <div className="seat-row-container" role="row">
       {Array.from(hashedData).map(([key, value], index) => (
         <Seat
-          mapId={mapId}
-          key={key}
+          key={index}
           value={value}
+          modalOpenHandler={modalOpenHandler}
           location={{ x: rowNumber, y: index }}
         />
       ))}

@@ -1,11 +1,12 @@
 import React, { FC, useEffect } from "react";
 import SeatRow from "../SeatRows/SeatRow";
 import Msg from "../../../../common/Empty-states/Msg";
+import { TicketLocation } from "../../../../../types";
 
-const SeatsWrapper: FC<{ seatsData: number[][]; mapId: string }> = ({
-  seatsData,
-  mapId,
-}) => {
+const SeatsWrapper: FC<{
+  seatsData: number[][];
+  modalOpenHandler: (location: TicketLocation) => void;
+}> = ({ seatsData, modalOpenHandler }) => {
   if (!seatsData.length)
     return (
       <Msg
@@ -14,7 +15,12 @@ const SeatsWrapper: FC<{ seatsData: number[][]; mapId: string }> = ({
       />
     );
   return seatsData?.map((d, i) => (
-    <SeatRow key={i} rowData={d} rowNumber={i} mapId={mapId} />
+    <SeatRow
+      rowNumber={i}
+      key={i}
+      rowData={d}
+      modalOpenHandler={modalOpenHandler}
+    />
   ));
 };
 
