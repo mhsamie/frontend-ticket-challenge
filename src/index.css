@@ -11,6 +11,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  scrollbar-width: thin;
+
+  scrollbar-color: orange #212121;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #212121;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: orange;
+  border-radius: 20px;
+
+  border: none;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
@@ -22,4 +44,8 @@
   button {
     background-color: #f9f9f9;
   }
+}
+body {
+  background-color: #212121;
+  color: azure;
 }

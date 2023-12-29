@@ -1,17 +1,18 @@
 .seat {
   border-radius: 8px;
-  width: 60px;
-  height: 60px;
+  min-width: 50px;
+  height: 50px;
   color: black;
   font-weight: 600;
   display: flex;
+  min-height: 40px;
   justify-content: center;
   align-items: center;
+  flex: 1 0 0px;
 }
 .seat-row-container {
   width: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
   gap: 8px;
 }
