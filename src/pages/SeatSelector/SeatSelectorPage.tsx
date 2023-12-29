@@ -43,7 +43,6 @@ const SeatSelectorPage = () => {
   });
 
   const seatSelectorHandler = async () => {
-    console.log(selectedSeat);
     try {
       const data = await axios.post(`/maps/${selectedId}/ticket`, selectedSeat);
       console.log(data.data.status);
@@ -58,9 +57,7 @@ const SeatSelectorPage = () => {
   };
   const modalOpenHandler = (location: TicketLocation) => {
     setSelectedSeat(location);
-    // if (value !== 1) {
     setConfirmationModal({ ...confirmationModal, isOpen: true });
-    // }
   };
 
   const modalOnClose = () => {
