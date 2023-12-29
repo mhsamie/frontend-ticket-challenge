@@ -56,10 +56,6 @@ const SeatSelectorPage = () => {
       <div className="seat-selector">
         <SeatsWrapper seatsData={seatsData} mapId={selectedId} />
       </div>
-
-      <section className="selected-ticket-viewer">
-        <div></div>
-      </section>
     </main>
   );
 };

@@ -38,7 +38,7 @@ export const handlers = [
             //@ts-ignore
             db.tickets.push(ticket);
 
-            result = { status: "success", ticket };
+            result = { status: "success", ticket, message: "Your seat reserved successfully." };
         } else {
             result = { status: "failed", message: "Seat is already reserved." };
         }

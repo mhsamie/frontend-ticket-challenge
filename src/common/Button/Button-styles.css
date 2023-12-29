@@ -1,0 +1,11 @@
+.btn.primary {
+  background-color: black;
+  color: white;
+  padding: 10px 40px;
+}
+.btn.secondary {
+  padding: 10px 20px;
+  background-color: white;
+  border: solid 2px black;
+  color: black;
+}
