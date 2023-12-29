@@ -1,11 +1,9 @@
 import { FC } from "react";
-import Button from "../../../common/Button/Button";
 import "./Ticket-styles.css";
+import { TicketLocation } from "../../../../types";
 
 const TicketInfo: FC<{
-  location: { x: number; y: number };
-  //   onConfirm: () => Promise<void>;
-  //   onClose: () => void;
+  location: TicketLocation;
 }> = ({ location }) => {
   return (
     <div className="selected-ticket">

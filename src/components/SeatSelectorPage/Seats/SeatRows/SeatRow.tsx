@@ -22,6 +22,7 @@ const SeatRow: FC<{
 
   return (
     <div className="seat-row-container" role="row">
+      <span>{rowNumber + 1}</span>
       {Array.from(hashedData).map(([key, value], index) => (
         <Seat
           key={`s${index}`}

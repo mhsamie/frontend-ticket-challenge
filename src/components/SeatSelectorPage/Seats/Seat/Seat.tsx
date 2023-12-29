@@ -14,7 +14,9 @@ const Seat: FC<{
       role="button"
       onClick={() => value !== 1 && modalOpenHandler(location)}
       className={`seat ${seatColor}`}
-    />
+    >
+      {location.y + 1}
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 const Msg: FC<{ type: "info" | "error" | "success"; msg: string }> = ({
   type,

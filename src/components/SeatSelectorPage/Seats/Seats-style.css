@@ -2,6 +2,11 @@
   border-radius: 8px;
   width: 60px;
   height: 60px;
+  color: black;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .seat-row-container {
   width: 100%;
@@ -17,6 +22,7 @@
 
 .seat.red {
   background-color: red;
+  cursor: not-allowed;
 }
 
 .seat.white {

@@ -19,7 +19,7 @@ const Modal: FC<Iprops> = ({ isOpen, onClose, title, children, onConfirm }) => {
 
   return (
     <div className={isOpen ? "modal open" : "modal"}>
-      <div className="modal-overlay" onClick={handleClose}></div>
+      <div className="modal-overlay" role="overlay" onClick={handleClose}></div>
       <div className="modal-content">
         <div className="modal-header">
           <h3 className="modal-title">{title}</h3>

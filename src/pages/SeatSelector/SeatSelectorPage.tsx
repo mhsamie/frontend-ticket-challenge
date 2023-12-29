@@ -6,7 +6,7 @@ import axios from "axios";
 import Msg from "../../common/Empty-states/Msg";
 import SeatsWrapper from "../../components/SeatSelectorPage/Seats/SeatsWrapper/SeatsWrapper";
 import Modal from "../../common/Modal/Modal";
-import TicketInfo from "../../components/SeatSelectorPage/Ticket/TicketInfo";
+import TicketInfo from "../../components/SeatSelectorPage/Ticket-Info/TicketInfo";
 import { useNavigate } from "react-router-dom";
 import { TicketLocation } from "../../../types";
 

@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   gap: 20px;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -11,7 +11,7 @@
 .stadium-container > .seats-section-container {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 .stadium-container > .vol-ground-image {
@@ -28,14 +28,19 @@
   border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
-
+  overflow-y: auto;
+  overflow-y: auto;
+  max-height: 600px;
   justify-content: center;
   gap: 8px;
   align-items: center;
 }
 
-@media (max-width: 768px) {
-  .stadium-container {
-    flex-direction: column;
+@media (max-width: 1024px) {
+  .stadium-container > .seats-section-container {
+    grid-template-columns: repeat(2, 1fr);
   }
+  /* .stadium-container {
+    flex-direction: column;
+  } */
 }
