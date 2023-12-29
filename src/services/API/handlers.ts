@@ -8,7 +8,11 @@ export const handlers = [
     // GET handler for '/maps' endpoint
     // Returns the keys of the 'maps' object in the database as a JSON response
     http.get("/maps", () => {
-        return HttpResponse.json(Object.keys(db.data.maps));
+        const maps = Object.keys(db.data.maps);
+        if (maps.length === 0) {
+            return new HttpResponse(null, { status: 500 });
+        }
+        return HttpResponse.json(maps);
     }),
 
     // GET handler for '/maps/:map_id' endpoint
@@ -17,6 +21,9 @@ export const handlers = [
         const id = params.map_id;
         //@ts-ignore
         const selectedMap = db.data.maps[id];
+        if (!selectedMap) {
+            return new HttpResponse(null, { status: 500 });
+        }
         return HttpResponse.json(selectedMap?.seats || []);
     }),
 
@@ -46,4 +53,9 @@ export const handlers = [
 
         return HttpResponse.json(result);
     }),
+    //to handle undefiend routes
+    http.get("*", async () => {
+        return new HttpResponse(null, { status: 404 });
+    })
+
 ];

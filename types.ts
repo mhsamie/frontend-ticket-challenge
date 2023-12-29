@@ -13,3 +13,4 @@ export interface TicketLocation {
     x: number;
     y: number;
 }
+

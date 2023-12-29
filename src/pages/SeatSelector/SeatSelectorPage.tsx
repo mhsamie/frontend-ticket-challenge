@@ -11,45 +11,52 @@ import { useNavigate } from "react-router-dom";
 import { TicketLocation } from "../../../types";
 
 const SeatSelectorPage = () => {
-  const [MapsData, setMapData] = useState<string[]>([]);
+  const navigate = useNavigate();
+  const [mapsData, setMapData] = useState<string[]>([]);
+  const [error, setError] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
-  const [seatsData, setSeatsData] = useState<[][]>([]);
+  const [seatsData, setSeatsData] = useState<(0 | 1)[][]>([]);
   const [selectedSeat, setSelectedSeat] = useState<TicketLocation>({
     x: 0,
     y: 0,
   });
   const getMapsHandler = async () => {
+    setError("");
     try {
       const data = await axios.get("/maps");
-      console.log(data.data.data);
-      setMapData(data.data);
+      console.log(data);
+      if (data.status === 200) setMapData(data.data);
     } catch (error) {
+      setError("Can not fetch the map sections, please try again.");
       console.log(error);
     }
   };
 
   const mapSelectorHandler = async (id: string) => {
+    setError("");
     setSelectedId(id);
     try {
       const data = await axios.get(`/maps/${id}`);
-      setSeatsData(data.data);
+      if (data.status === 200) setSeatsData(data.data);
     } catch (error) {
+      setError("Can not get the seats information. please try again.");
       console.log(error);
     }
   };
-  const navigate = useNavigate();
   const [confirmationModal, setConfirmationModal] = useState({
     isOpen: false,
   });
 
   const seatSelectorHandler = async () => {
+    setError("");
     try {
       const data = await axios.post(`/maps/${selectedId}/ticket`, selectedSeat);
-      console.log(data.data.status);
+      console.log(data.data.ticket);
       if (data.data.status === "success") {
         navigate("/confirm");
       }
     } catch (error) {
+      setError("Your reservation occured an error, please try again.");
       console.log(error);
     } finally {
       modalOnClose();
@@ -71,28 +78,25 @@ const SeatSelectorPage = () => {
   return (
     <main data-testid="seat-selector-container" className="stadium-container">
       <div className="seats-section-container">
-        {MapsData ? (
-          MapsData?.map((d) => (
+        {mapsData.length > 0 &&
+          mapsData?.map((map, index) => (
             <MapSection
               active={selectedId}
-              key={d}
-              name={d}
+              key={`map-${index}`}
+              name={map}
               mapSelectorHandler={mapSelectorHandler}
             />
-          ))
-        ) : (
-          <Msg
-            type="error"
-            msg="Currently there is no Data to show. please Try again later."
+          ))}
+      </div>
+      {!error && (
+        <div className="seat-selector">
+          <SeatsWrapper
+            seatsData={seatsData}
+            modalOpenHandler={modalOpenHandler}
           />
-        )}
-      </div>
-      <div className="seat-selector">
-        <SeatsWrapper
-          seatsData={seatsData}
-          modalOpenHandler={modalOpenHandler}
-        />
-      </div>
+        </div>
+      )}
+      {error && <Msg type="error" msg={error} />}
       <Modal
         children={<TicketInfo location={selectedSeat} />}
         onConfirm={seatSelectorHandler}
