@@ -1,10 +1,14 @@
+// Importing necessary libraries and types
 import { FC } from "react";
 import "./Ticket-styles.css";
 import { TicketLocation } from "../../../../types";
 
+// Defining the TicketInfo component
 const TicketInfo: FC<{
   location: TicketLocation;
 }> = ({ location }) => {
+  // The TicketInfo component accepts a single prop: location
+  // The location prop is of type TicketLocation
   return (
     <div className="selected-ticket">
       <span>
@@ -14,5 +18,5 @@ const TicketInfo: FC<{
     </div>
   );
 };
-
+// Exporting the TicketInfo component
 export default TicketInfo;

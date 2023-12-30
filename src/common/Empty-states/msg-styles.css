@@ -8,3 +8,12 @@
 .msg {
   text-align: center;
 }
+.msg.info {
+  color: yellow;
+}
+.msg.error {
+  color: darkred;
+}
+.msg.success {
+  color: green;
+}

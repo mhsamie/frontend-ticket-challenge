@@ -1,25 +1,28 @@
-// Modal.js
+// Modal.tsx
+// Importing necessary libraries and types
 import React, { FC } from "react";
 
 import "./Modal.css";
 import Button from "../Button/Button";
-
-interface Iprops {
-  isOpen: boolean;
-  onConfirm: any;
-  onClose: () => void;
-  title: string;
-  children: React.ReactNode;
-}
-
-const Modal: FC<Iprops> = ({ isOpen, onClose, title, children, onConfirm }) => {
+import { ModalProps } from "../../../types";
+// Defining the Modal component
+const Modal: FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  onConfirm,
+}) => {
+  // The Modal component accepts props of type Modalprops
   const handleClose = () => {
     onClose();
   };
 
   return (
     <div className={isOpen ? "modal open" : "modal"}>
+      {/* An overlay div. When clicked, it  closes the modal  */}
       <div className="modal-overlay" role="overlay" onClick={handleClose}></div>
+      {/*  The modal's content div */}
       <div className="modal-content">
         <div className="modal-header">
           <h3 className="modal-title">{title}</h3>
@@ -43,6 +46,7 @@ const Modal: FC<Iprops> = ({ isOpen, onClose, title, children, onConfirm }) => {
         <div className="modal-body">
           <div>{children}</div>
           <div className="action-btn-section">
+            {/*   contains action buttons confrim and cancle */}
             <Button type="primary" text="Yes, I do." onClick={onConfirm} />
             <Button type="secondary" text="Cancel" onClick={onClose} />
           </div>
@@ -52,4 +56,5 @@ const Modal: FC<Iprops> = ({ isOpen, onClose, title, children, onConfirm }) => {
   );
 };
 
+// Exporting the Modal component
 export default Modal;

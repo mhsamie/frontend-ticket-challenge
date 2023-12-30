@@ -9,26 +9,33 @@ import TicketInfo from "../../components/SeatSelectorPage/Ticket-Info/TicketInfo
 import { useNavigate } from "react-router-dom";
 import { TicketLocation } from "../../../types";
 
+// Defining the SeatSelectorPage component
 const SeatSelectorPage = () => {
+  // navigation hook => navigate to confirm page after payment has successed
   const navigate = useNavigate();
+
+  // defining states to store page data
   const [mapsData, setMapData] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string>("");
-  const [selectedId, setSelectedId] = useState<string>("");
   const [seatsData, setSeatsData] = useState<(0 | 1)[][]>([]);
-  const [confirmationModal, setConfirmationModal] = useState({
-    isOpen: false,
-  });
+  const [selectedId, setSelectedId] = useState<string>("");
   const [selectedSeat, setSelectedSeat] = useState<TicketLocation>({
     x: 0,
     y: 0,
   });
+
+  //defining loading and error and modal opener states
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string>("");
+  const [confirmationModal, setConfirmationModal] = useState({
+    isOpen: false,
+  });
+
   //all recive and post data to db logic is here due to debuge and access easier
   const getMapsHandler = async () => {
+    setError("");
     try {
       const data = await axios.get("/maps");
       if (data.status === 200) setMapData(data.data);
-      setError("");
     } catch (error) {
       setError("Can not fetch the map sections, please try again.");
     } finally {
@@ -36,7 +43,8 @@ const SeatSelectorPage = () => {
     }
   };
 
-  const mapSelectorHandler = async (id: string) => {
+  //get seats of the selected map
+  const getSelectedMapSeatsHandler = async (id: string) => {
     setError("");
     setSelectedId(id);
     try {
@@ -58,27 +66,33 @@ const SeatSelectorPage = () => {
     } catch (error) {
       setError("Your reservation occured an error, please try again.");
     } finally {
+      // close the modal at the end of the execution
       modalOnClose();
     }
   };
 
+  // set seats location and open the modal to confirm user choice
   const modalOpenHandler = (location: TicketLocation) => {
     setSelectedSeat(location);
     setConfirmationModal({ ...confirmationModal, isOpen: true });
   };
 
+  // close modal function
   const modalOnClose = () => {
     setConfirmationModal({ ...confirmationModal, isOpen: false });
   };
 
+  //only fetch the maps data once at mounte time
   useEffect(() => {
     getMapsHandler();
   }, []);
 
   return (
     <main data-testid="seat-selector-container" className="stadium-container">
-      {isLoading && <div>loading</div>}
+      {/* loading and error state */}
+      {isLoading && <div>loading...</div>}
       {error && <Msg type="error" msg={error} />}
+      {/* in case of zero error and maps data exists=> show maps to the user to select */}
       <div className="seats-section-container">
         {mapsData.length > 0 &&
           !isLoading &&
@@ -87,10 +101,11 @@ const SeatSelectorPage = () => {
               active={selectedId}
               key={`map-${index}`}
               name={map}
-              mapSelectorHandler={mapSelectorHandler}
+              mapSelectorHandler={getSelectedMapSeatsHandler}
             />
           ))}
       </div>
+      {/* if there is no erorr => show seatWrapper */}
       {!error && (
         <div className="seat-selector">
           <SeatsWrapper
@@ -99,7 +114,7 @@ const SeatSelectorPage = () => {
           />
         </div>
       )}
-
+      {/* confirmation modal */}
       <Modal
         children={<TicketInfo location={selectedSeat} />}
         onConfirm={seatSelectorHandler}
@@ -110,5 +125,5 @@ const SeatSelectorPage = () => {
     </main>
   );
 };
-
+// export page
 export default SeatSelectorPage;

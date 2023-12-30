@@ -5,7 +5,7 @@ import SeatsWrapper from "./SeatsWrapper";
 
 test("renders correctly with seatsData", () => {
   const mockModalOpenHandler = jest.fn();
-  const seatsData = [
+  const seatsData: (0 | 1)[][] = [
     [0, 1, 0],
     [1, 1, 0],
     [1, 1, 0],

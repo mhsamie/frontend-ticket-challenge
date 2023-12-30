@@ -17,16 +17,16 @@
   gap: 8px;
 }
 
-.seat.white:hover {
+.seat.available:hover {
   background-color: rgb(161, 228, 255);
 }
 
-.seat.red {
+.seat.occupied {
   background-color: rgb(30, 146, 255);
   cursor: not-allowed;
 }
 
-.seat.white {
+.seat.available {
   background-color: white;
   cursor: pointer;
 }
