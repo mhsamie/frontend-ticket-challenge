@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import { FC } from "react";
 import SeatRow from "../SeatRows/SeatRow";
 import Msg from "../../../../common/Empty-states/Msg";
 import { TicketLocation } from "../../../../../types";

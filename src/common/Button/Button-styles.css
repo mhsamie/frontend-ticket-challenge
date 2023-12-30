@@ -4,15 +4,34 @@
   padding: 12px 40px;
   border: solid 2px black;
 }
+.btn.primary:hover {
+  background-color: #4e4e4e;
+  border: solid 2px #4e4e4e;
+}
+
+.btn.secondary:hover {
+  color: white;
+  background-color: #4e4e4e;
+  border: solid 2px #4e4e4e;
+}
 .btn.secondary {
   padding: 12px 20px;
   background-color: white;
   border: solid 2px black;
   color: black;
 }
+.btn.outlined {
+  border: none;
+  background-color: #e29c4d;
+  padding: 12px 60px;
+  color: white;
+}
 .btn {
   padding: 12px auto;
   cursor: pointer;
   border-radius: 8px;
   font-weight: 600;
+}
+.btn.outlined:hover {
+  background-color: #d47100;
 }

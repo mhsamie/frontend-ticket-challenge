@@ -43,8 +43,6 @@ export const handlers = [
             map[map_id].seats[x][y] = 1;
 
             const ticket = { id: genUid(24), x, y, map_id };
-            //@ts-ignore
-            db.tickets.push(ticket);
 
             result = { status: "success", ticket, message: "Your seat reserved successfully." };
         } else {

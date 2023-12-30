@@ -1,0 +1,15 @@
+.ticket-id {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+.discription {
+  text-align: center;
+}
+
+@media (max-width: 678px) {
+  .ticket-id {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

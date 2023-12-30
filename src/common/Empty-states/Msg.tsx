@@ -1,5 +1,5 @@
 import { FC } from "react";
-
+import "./msg-styles.css";
 const Msg: FC<{ type: "info" | "error" | "success"; msg: string }> = ({
   type,
   msg,

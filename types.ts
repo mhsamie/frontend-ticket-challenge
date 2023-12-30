@@ -1,12 +1,7 @@
 
 
 export interface MapSeats {
-    [key: string]: number[][];
-}
-
-export interface Seat {
-    x: number;
-    y: number;
+    [key: string]: (0 | 1)[][];
 }
 
 export interface TicketLocation {

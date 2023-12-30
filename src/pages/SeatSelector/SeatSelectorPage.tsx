@@ -1,6 +1,5 @@
 import MapSection from "../../components/SeatSelectorPage/Section/MapSection";
 import "./seat-selector.styles.css";
-import image from "../../assets/vol-ground.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Msg from "../../common/Empty-states/Msg";
@@ -13,22 +12,27 @@ import { TicketLocation } from "../../../types";
 const SeatSelectorPage = () => {
   const navigate = useNavigate();
   const [mapsData, setMapData] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string>("");
   const [selectedId, setSelectedId] = useState<string>("");
   const [seatsData, setSeatsData] = useState<(0 | 1)[][]>([]);
+  const [confirmationModal, setConfirmationModal] = useState({
+    isOpen: false,
+  });
   const [selectedSeat, setSelectedSeat] = useState<TicketLocation>({
     x: 0,
     y: 0,
   });
+  //all recive and post data to db logic is here due to debuge and access easier
   const getMapsHandler = async () => {
-    setError("");
     try {
       const data = await axios.get("/maps");
-      console.log(data);
       if (data.status === 200) setMapData(data.data);
+      setError("");
     } catch (error) {
       setError("Can not fetch the map sections, please try again.");
-      console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -40,28 +44,24 @@ const SeatSelectorPage = () => {
       if (data.status === 200) setSeatsData(data.data);
     } catch (error) {
       setError("Can not get the seats information. please try again.");
-      console.log(error);
     }
   };
-  const [confirmationModal, setConfirmationModal] = useState({
-    isOpen: false,
-  });
 
   const seatSelectorHandler = async () => {
     setError("");
     try {
       const data = await axios.post(`/maps/${selectedId}/ticket`, selectedSeat);
-      console.log(data.data.ticket);
       if (data.data.status === "success") {
-        navigate("/confirm");
+        //Pass ticked id with query string as the it isn't a sensetive data
+        navigate(`/confirm?ticketID=${data.data.ticket.id}`);
       }
     } catch (error) {
       setError("Your reservation occured an error, please try again.");
-      console.log(error);
     } finally {
       modalOnClose();
     }
   };
+
   const modalOpenHandler = (location: TicketLocation) => {
     setSelectedSeat(location);
     setConfirmationModal({ ...confirmationModal, isOpen: true });
@@ -77,8 +77,11 @@ const SeatSelectorPage = () => {
 
   return (
     <main data-testid="seat-selector-container" className="stadium-container">
+      {isLoading && <div>loading</div>}
+      {error && <Msg type="error" msg={error} />}
       <div className="seats-section-container">
         {mapsData.length > 0 &&
+          !isLoading &&
           mapsData?.map((map, index) => (
             <MapSection
               active={selectedId}
@@ -96,7 +99,7 @@ const SeatSelectorPage = () => {
           />
         </div>
       )}
-      {error && <Msg type="error" msg={error} />}
+
       <Modal
         children={<TicketInfo location={selectedSeat} />}
         onConfirm={seatSelectorHandler}

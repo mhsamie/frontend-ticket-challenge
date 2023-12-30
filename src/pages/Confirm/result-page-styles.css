@@ -1,0 +1,12 @@
+.success-confirmation {
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+
+  background-color: rgba(49, 194, 105, 0.082);
+  color: white;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
