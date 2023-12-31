@@ -8,7 +8,7 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://i.postimg.cc/25RcSw6P/Screenshot-2023-12-31-125313.png" alt="project-screenshot" width="400" height="400/">
+<img src="https://i.postimg.cc/25RcSw6P/Screenshot-2023-12-31-125313.png" alt="project-screenshot" width="800" height="400/">
 
 <h2>Notice:</h2>
 
