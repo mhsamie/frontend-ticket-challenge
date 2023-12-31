@@ -1,3 +1,58 @@
+# Documentation
+
+<h1 align="center" id="title">Javascript Ticket Challenge</h1>
+
+<p id="description">The Volleyball Federation has decided to use an online selling platform for the next season and our company has been chosen for implementing that. This project represents a small version of this system. </p>
+
+<p align="center"><img src="https://img.shields.io/badge/type-script-blue" alt="shields"><img src="https://img.shields.io/badge/react-js-green" alt="shields"><img src="https://img.shields.io/badge/jest-orange" alt="shields"></p>
+
+<h2>Project Screenshots:</h2>
+
+<img src="https://i.postimg.cc/25RcSw6P/Screenshot-2023-12-31-125313.png" alt="project-screenshot" width="400" height="400/">
+
+<h2>Notice:</h2>
+
+<p>This project uses 'MSW' as a mock server. msw will start when the project starts on development mode automatically. to make sure if it has started check the console, this message will show its start in console <span style="color:red">[MSW] Mocking enabled.</span</p>
+
+<h2>🛠️ Installation Steps:</h2>
+
+<p>1. clone the project</p>
+
+```
+git clone https://github.com/mhsamie/frontend-ticket-challenge.git
+```
+
+<p>2. go to the repository</p>
+
+```
+cd frontend-ticket-challenge
+```
+
+<p>3. install the requirments</p>
+
+```
+npm install
+```
+
+<p>4. run the server on dev mode</p>
+
+```
+npm run dev
+```
+
+<h2>💻 Built with</h2>
+
+Technologies used in the project:
+
+- react.js
+- vite
+- typescript
+- msw
+- jest
+- husky
+
+---
+
 # Javascript Ticket Challenge
 
 The Volleyball Federation has decided to use an online selling platform for the next season, and our company has been chosen for implementing that.
