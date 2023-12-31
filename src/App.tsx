@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import SeatSelectorPage from "./pages/SeatSelector/SeatSelectorPage";
 import ResultPage from "./pages/Confirm/ResultPage";
-import Header from "./common/layout/Header";
+import Header from "./common/Layout/Header";
 
 function App() {
   // this project has two main routes => home that contains most of the project functionality of reserving and view the tickets

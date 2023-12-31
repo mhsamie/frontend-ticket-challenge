@@ -1,7 +1,7 @@
 // Importing necessary libraries and types
 import { useSearchParams } from "react-router-dom";
 import { getCurrentTime } from "../../services/utils/formatDate"; // Importing getCurrentTime function from customr format Date module
-import Msg from "../../common/Empty-states/Msg";
+import Msg from "../../common/EmptyStates/Msg";
 import "./confirm-styles.css";
 
 // Defining the ConfirmedId component

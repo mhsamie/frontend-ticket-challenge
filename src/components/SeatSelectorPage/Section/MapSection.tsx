@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import "./map-styles.css";
-import { Mapprops } from "../../../../types";
+import { MapProps } from "../../../../types";
 
-const MapSection: FC<Mapprops> = ({ name, mapSelectorHandler, active }) => {
+const MapSection: FC<MapProps> = ({ name, mapSelectorHandler, active }) => {
   // The MapSection component accepts props of type Mapprops
   // The props include: each component name, mapSelectorHandler to choose a map section, and active status of selected map
   return (

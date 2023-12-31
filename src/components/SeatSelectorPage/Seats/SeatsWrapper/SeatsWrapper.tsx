@@ -1,7 +1,7 @@
 // import component needs
 import { FC } from "react";
 import SeatRow from "../SeatRows/SeatRow";
-import Msg from "../../../../common/Empty-states/Msg";
+import Msg from "../../../../common/EmptyStates/Msg";
 import { SeatsWrapperProps } from "../../../../../types";
 
 // Defining the SeatsWrapper component

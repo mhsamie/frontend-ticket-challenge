@@ -3,7 +3,7 @@ import { FC } from "react";
 import Seat from "../Seat/Seat";
 import "../Seats-style.css";
 import { SeatRowProps } from "../../../../../types";
-import Msg from "../../../../common/Empty-states/Msg";
+import Msg from "../../../../common/EmptyStates/Msg";
 
 // defined the component
 const SeatRow: FC<SeatRowProps> = ({

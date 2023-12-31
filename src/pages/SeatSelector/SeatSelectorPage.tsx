@@ -2,7 +2,7 @@ import MapSection from "../../components/SeatSelectorPage/Section/MapSection";
 import "./seat-selector.styles.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Msg from "../../common/Empty-states/Msg";
+import Msg from "../../common/EmptyStates/Msg";
 import SeatsWrapper from "../../components/SeatSelectorPage/Seats/SeatsWrapper/SeatsWrapper";
 import Modal from "../../common/Modal/Modal";
 import TicketInfo from "../../components/SeatSelectorPage/Ticket-Info/TicketInfo";

@@ -28,7 +28,7 @@ export interface ModalProps {
     children: React.ReactNode;
 }
 
-export interface Mapprops {
+export interface MapProps {
     active: string;
     name: string;
     mapSelectorHandler: (id: string) => void;
